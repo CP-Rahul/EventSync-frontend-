@@ -8,6 +8,7 @@ import './index.css'
 import App from './App.jsx'
 import Register from './components/Register.jsx';
 import Login from './components/Login.jsx';
+import { Toaster } from 'react-hot-toast';
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,7 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+    <Toaster />
     <RouterProvider router={router} />
   </StrictMode>,
 )
