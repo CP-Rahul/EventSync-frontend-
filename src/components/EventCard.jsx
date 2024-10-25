@@ -15,10 +15,14 @@ const EventCard = ({ id, title, date, description, setRefetch }) => {
   };
   return (
     <>
-      <div className="bg-violet-200 flex flex-col gap-4 p-4">
+      {/* <div className="bg-violet-200 flex flex-col gap-4 p-4">
         <h1 className="text-lg">{title}</h1>
         <p className="italic text-sm">Sheduled: {date}</p>
-        <p className="font-bold text-sm">{description}</p>
+        <p className="font-bold text-sm">{description}</p> */}
+      <div className="bg-white border border-gray-300 rounded-md p-4">
+        <h1 className="text-lg font-medium">{title}</h1>
+        <p className="text-sm text-gray-600">Scheduled: {date}</p>
+        <p className="text-sm">{description}</p>
         <div className="flex justify-end gap-4 mr-4">
           <svg
             width="20"

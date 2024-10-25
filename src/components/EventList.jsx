@@ -2,12 +2,15 @@ import axios from "axios";
 import { baseUrl } from "../constants";
 import { useEffect, useState } from "react";
 import EventCard from "./EventCard";
+import { dateTimeFormater } from "../utils/dateTimeFormater";
 import toast from "react-hot-toast";
 
 const EventList = ({ refetch, setRefetch }) => {
   const [events, setEvents] = useState([]);
+  const [loading, setLoading] = useState(false);
   const fetchEvents = async () => {
     try {
+      setLoading(true);
       const response = await axios.get(`${baseUrl}/event/`, {
         headers: {
           "x-access-token": localStorage.getItem("x-access-token"),
@@ -18,7 +21,12 @@ const EventList = ({ refetch, setRefetch }) => {
       } else {
       }
     } catch (error) {
-      toast.error(error.response?.data?.error || "Something went wrong while fetching event"); 
+      toast.error(
+        error.response?.data?.error ||
+          "Something went wrong while fetching event"
+      );
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -27,22 +35,26 @@ const EventList = ({ refetch, setRefetch }) => {
   }, [refetch]);
 
   return (
-    <div className="grid gap-5 p-8 sm:grid-cols-2 md:grid-cols-3">
-      {events && events.length > 0 ? (
-        events.map((event) => (
-          <EventCard
-            key={event.id}
-            id={event.id}
-            title={event.title}
-            date={new Date(event.date).toLocaleDateString()}
-            description={event.description}
-            setRefetch={setRefetch}
-          />
-        ))
-      ) : (
-        <p>Loading...</p>
-      )}
-    </div>
+    <>
+      <div className="grid gap-5 p-8 sm:grid-cols-2 md:grid-cols-3">
+        {loading && events.lenght === 0 ? (
+          <p>Loading...</p>
+        ) : events.length > 0 ? (
+          events.map((event) => (
+            <EventCard
+              key={event.id}
+              id={event.id}
+              title={event.title}
+              date={dateTimeFormater(event.date)}
+              description={event.description}
+              setRefetch={setRefetch}
+            />
+          ))
+        ) : (
+          <p>No events found</p>
+        )}
+      </div>
+    </>
   );
 };
 
