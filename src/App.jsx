@@ -1,6 +1,14 @@
+import EventList from "./components/EventList";
+import Navbar from "./components/Navbar"
+import { useState } from "react";
+
 const App = () => {
+  const [refetch, setRefetch] = useState(false); 
   return(
-    <h1>Hello world</h1>
+    <>
+    <Navbar setRefetch={setRefetch}/>
+    <EventList refetch={refetch} setRefetch={setRefetch}/>
+    </>
   )
 }
 

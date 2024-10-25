@@ -70,7 +70,7 @@ const Login = () => {
         >
           Login
         </button>
-        <Link to={"/login"} className="underline" disabled={loading}>
+        <Link to={"/register"} className="underline" disabled={loading}>
           Do not have an account?
         </Link>
       </form>
