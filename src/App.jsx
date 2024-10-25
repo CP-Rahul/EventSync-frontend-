@@ -1,5 +1,5 @@
 import EventList from "./components/EventList";
-import Navbar from "./components/Navbar"
+import Navbar from "./components/NavBar"
 import { useState } from "react";
 
 const App = () => {
