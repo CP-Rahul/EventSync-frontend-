@@ -24,10 +24,11 @@ const Login = () => {
       const response = await axios.post(`${baseUrl}/user/login`, user);
       const token = response?.data?.data;
       if (response.status === 200) {
-        localStorage.setItem('x-access-token', token)
-        toast.success(
-          response.data?.data?.msg || "Login successful"
-        );
+        if (localStorage.getItem("x-access-token")) {
+          localStorage.removeItem("x-access-token");
+        }
+        localStorage.setItem("x-access-token", token);
+        toast.success(response.data?.data?.msg || "Login successful");
         setloading(false);
         navigate("/");
       }

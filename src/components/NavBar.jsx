@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import EventForm from "./EventForm";
+import toast from "react-hot-toast";
 
 const Navbar = ({ setRefetch }) => {
   const [isFormShown, setIsFormShown] = useState(false);
@@ -10,6 +11,7 @@ const Navbar = ({ setRefetch }) => {
   };
   const handleLogout = () => {
     localStorage.removeItem("x-access-token");
+    toast.success('Logout Successfull');
     navigate("/login");
   };
 

@@ -37,7 +37,7 @@ const EventList = ({ refetch, setRefetch }) => {
   return (
     <>
       <div className="grid gap-5 p-8 sm:grid-cols-2 md:grid-cols-3">
-        {loading && events.lenght === 0 ? (
+        {loading ? (
           <p>Loading...</p>
         ) : events.length > 0 ? (
           events.map((event) => (
